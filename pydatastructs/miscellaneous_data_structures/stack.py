@@ -1,10 +1,12 @@
-from pydatastructs.linear_data_structures import DynamicOneDimensionalArray, SinglyLinkedList
-from pydatastructs.utils.misc_util import _check_type, NoneType
 from copy import deepcopy as dc
+
+from pydatastructs.linear_data_structures import DynamicOneDimensionalArray, SinglyLinkedList
+from pydatastructs.utils.misc_util import NoneType
 
 __all__ = [
     'Stack'
 ]
+
 
 class Stack(object):
     """Representation of stack data structure
@@ -37,7 +39,7 @@ class Stack(object):
     >>> s.push(3)
     >>> str(s)
     '[1, 2, 3]'
-    >>> s.pop()
+    >>> s.pop
     3
 
     References
@@ -53,10 +55,10 @@ class Stack(object):
                 kwargs.get('dtype', int))
         if implementation == 'linked_list':
             return LinkedListStack(
-                kwargs.get('items',None)
+                kwargs.get('items', None)
             )
         raise NotImplementedError(
-                "%s hasn't been implemented yet."%(implementation))
+            "%s hasn't been implemented yet." % implementation)
 
     @classmethod
     def methods(cls):
@@ -68,20 +70,20 @@ class Stack(object):
 
     def pop(self, *args, **kwargs):
         raise NotImplementedError(
-              "This is an abstract method.")
+            "This is an abstract method.")
 
     @property
     def is_empty(self):
         raise NotImplementedError(
-              "This is an abstract method.")
+            "This is an abstract method.")
 
     @property
     def peek(self):
         raise NotImplementedError(
-              "This is an abstract method.")
+            "This is an abstract method.")
+
 
 class ArrayStack(Stack):
-
     __slots__ = ['items']
 
     def __new__(cls, items=None, dtype=NoneType):
@@ -96,7 +98,7 @@ class ArrayStack(Stack):
     @classmethod
     def methods(cls):
         return ['__new__', 'push', 'pop', 'is_emtpy',
-        'peek', '__len__', '__str__']
+                'peek', '__len__', '__str__']
 
     def push(self, x):
         if self.is_empty:
@@ -130,7 +132,6 @@ class ArrayStack(Stack):
 
 
 class LinkedListStack(Stack):
-
     __slots__ = ['stack']
 
     def __new__(cls, items=None):
@@ -148,7 +149,7 @@ class LinkedListStack(Stack):
     @classmethod
     def methods(cls):
         return ['__new__', 'push', 'pop', 'is_emtpy',
-        'peek', '__len__', '__str__']
+                'peek', '__len__', '__str__']
 
     def push(self, x):
         self.stack.appendleft(x)
